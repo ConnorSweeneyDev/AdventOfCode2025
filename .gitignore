@@ -1,0 +1,9 @@
+# Development Output
+.cache/
+.claude/
+.vscode/
+.vs/
+
+# Build Output
+build/
+compile_commands.json
