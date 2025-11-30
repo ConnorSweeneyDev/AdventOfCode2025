@@ -22,8 +22,19 @@ namespace days
   void run_part(int part, std::function<void()> part1, std::function<void()> part2)
   {
     if (part != 0 && part != 1 && part != 2) throw utility::exception("Invalid part (" + std::to_string(part) + ")");
-    if (part == 0 || part == 1) part1();
-    if (part == 0 || part == 2) part2();
+    if (part == 0 || part == 1)
+    {
+      utility::print<utility::COUT>("--------------- Part 1 ---------------\n");
+      part1();
+      utility::print<utility::COUT>("--------------- Part 1 ---------------\n");
+      if (part == 0) utility::print<utility::COUT>("\n");
+    }
+    if (part == 0 || part == 2)
+    {
+      utility::print<utility::COUT>("--------------- Part 2 ---------------\n");
+      part2();
+      utility::print<utility::COUT>("--------------- Part 2 ---------------\n");
+    }
   }
 
   void run_day(int day, int part)
@@ -50,8 +61,9 @@ namespace days
   {
     for (int day = 1; day <= 12; ++day)
     {
-      utility::print<utility::COUT>("=== Day {} ===\n", day);
+      utility::print<utility::COUT>("=============== Day {}{} ===============\n", (day >= 10 ? "" : " "), day);
       run_day(day, 0);
+      utility::print<utility::COUT>("=============== Day {}{} ===============\n", (day >= 10 ? "" : " "), day);
       if (day != 12) utility::print<utility::COUT>("\n");
     }
   }

@@ -4,6 +4,10 @@
 .vscode/
 .vs/
 
+# User Files
+input/
+output/
+
 # Build Output
 build/
 compile_commands.json
