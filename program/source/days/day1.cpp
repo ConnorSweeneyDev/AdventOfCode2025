@@ -7,15 +7,9 @@
 
 namespace day1
 {
-  const std::vector<std::string> &read_input()
-  {
-    static auto input = utility::read_file<std::vector<std::string>>("input/day1.txt");
-    return input;
-  }
-
   void part1()
   {
-    auto input = read_input();
+    auto input = utility::read_file<std::vector<std::string>>("input/day1.txt");
 
     int sum = 50;
     int count = 0;
