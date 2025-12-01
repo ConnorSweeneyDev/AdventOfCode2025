@@ -1,6 +1,10 @@
 # AdventOfCode 2025
 Solutions to the Advent of Code 2025 programming puzzles.
 
+# How to Use
+Get your inputs and put them in the `input/` folder in the format `dayN.txt`. After that running the program should
+display all your solutions for each day.
+
 # How to Build
 This project uses my custom zero dependency bootstrapped build system called
 [CSBuild](https://github.com/ConnorSweeneyDev/CSBuild).\
