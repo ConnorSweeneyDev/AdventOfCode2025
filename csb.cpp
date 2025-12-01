@@ -1,5 +1,7 @@
 #include "csb.hpp"
 
+#include <string>
+
 void configure()
 {
   csb::target_name = "Advent";
@@ -20,11 +22,20 @@ void configure()
 int clean()
 {
   csb::clean_build_directory();
+  csb::remove_files({"input"});
   return CSB_SUCCESS;
 }
 
 int build()
 {
+  if (auto session = csb::get_environment_variable("AOC_SESSION"); !session.empty())
+  {
+    for (int day = 1; day <= 1; ++day)
+      csb::file_install({{"https://adventofcode.com/2025/day/" + std::to_string(day) + "/input",
+                          "input/day" + std::to_string(day) + ".txt"}},
+                        {"-b", "session=" + session});
+  }
+
   if (!csb::is_subproject)
   {
     csb::clang_format("21.1.1");

@@ -2,8 +2,9 @@
 Solutions to the Advent of Code 2025 programming puzzles.
 
 # How to Use
-Get your inputs and put them in the `input/` folder in the format `dayN.txt`. After that running the program should
-display all your solutions for each day.
+You need to use your own input files to run the solutions. This can be automated by creating a `.env` file with the
+format `AOC_SESSION=<your_session_cookie>`. Alternatively, you can manually grab each input file in the format
+`input/dayN.txt`.
 
 # How to Build
 This project uses my custom zero dependency bootstrapped build system called

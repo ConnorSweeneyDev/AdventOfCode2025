@@ -1,16 +1,22 @@
 #include "day1.hpp"
 
-#include "utility.hpp"
-
 #include <string>
 #include <vector>
 
+#include "utility.hpp"
+
 namespace day1
 {
-  auto input = utility::read_file<std::vector<std::string>>("input/day1.txt");
+  const std::vector<std::string> &read_input()
+  {
+    static auto input = utility::read_file<std::vector<std::string>>("input/day1.txt");
+    return input;
+  }
 
   void part1()
   {
+    auto input = read_input();
+
     int sum = 50;
     int count = 0;
     for (const auto &line : input)
@@ -24,11 +30,14 @@ namespace day1
       sum = ((sum % 100) + 100) % 100;
       if (sum == 0) count++;
     }
+
     utility::print<utility::COUT>("Answer: {}\n", count);
   }
 
   void part2()
   {
+    auto input = utility::read_file<std::vector<std::string>>("input/day1.txt");
+
     auto floor_divide = [](const int x) { return x >= 0 ? x / 100 : (x - 99) / 100; };
 
     int sum = 50;
@@ -49,6 +58,7 @@ namespace day1
       }
       sum = ((sum % 100) + 100) % 100;
     }
+
     utility::print<utility::COUT>("Answer: {}\n", count);
   }
 }
