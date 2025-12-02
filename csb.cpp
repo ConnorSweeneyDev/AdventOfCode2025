@@ -2,7 +2,7 @@
 
 #include <string>
 
-void configure()
+void csb::configure()
 {
   csb::target_name = "Advent";
   csb::target_artifact = EXECUTABLE;
@@ -19,14 +19,14 @@ void configure()
     csb::libraries = {"c", "m"};
 }
 
-int clean()
+int csb::clean()
 {
   csb::clean_build_directory();
   csb::remove_files({"input"});
   return CSB_SUCCESS;
 }
 
-int build()
+int csb::build()
 {
   if (auto session = csb::get_environment_variable("AOC_SESSION"); !session.empty())
     for (int day = 1; day <= 2; ++day)
@@ -41,10 +41,11 @@ int build()
   }
   csb::compile();
   csb::link();
+  csb::run();
   return CSB_SUCCESS;
 }
 
-int run()
+int csb::run()
 {
   csb::run_target();
   return CSB_SUCCESS;
