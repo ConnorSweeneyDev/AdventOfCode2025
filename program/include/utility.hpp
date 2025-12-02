@@ -8,8 +8,24 @@
 #include <string>
 #include <vector>
 
+enum print_stream
+{
+  COUT,
+  CERR,
+  CLOG
+};
+
 namespace utility
 {
+  template <print_stream stream, typename... message_arguments>
+  void print(std::format_string<message_arguments...> message, message_arguments &&...arguments);
+  inline static std::mutex print_mutex = {};
+
+  template <typename type>
+  concept serializable = std::same_as<type, std::string> || std::same_as<type, std::vector<std::string>>;
+  template <serializable type> type read_file(const std::filesystem::path &file);
+  template <serializable type> void write_file(const std::filesystem::path &file, const type &container);
+
   class exception : public std::exception
   {
   public:
@@ -19,21 +35,6 @@ namespace utility
   protected:
     std::string message = {};
   };
-
-  enum print_stream
-  {
-    COUT,
-    CERR,
-    CLOG
-  };
-  template <print_stream stream, typename... message_arguments>
-  void print(std::format_string<message_arguments...> message, message_arguments &&...arguments);
-  inline static std::mutex print_mutex = {};
-
-  template <typename type>
-  concept serializable = std::same_as<type, std::string> || std::same_as<type, std::vector<std::string>>;
-  template <serializable type> type read_file(const std::filesystem::path &file);
-  template <serializable type> void write_file(const std::filesystem::path &file, const type &container);
 }
 
 #include "utility.inl"

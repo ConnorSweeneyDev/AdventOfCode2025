@@ -18,7 +18,7 @@ int main()
   }
   catch (const std::exception &error)
   {
-    utility::print<utility::CERR>("{}\n", error.what());
+    utility::print<CERR>("{}\n", error.what());
     return EXIT_FAILURE;
   }
 }

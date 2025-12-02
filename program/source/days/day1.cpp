@@ -25,7 +25,7 @@ namespace day1
       if (sum == 0) count++;
     }
 
-    utility::print<utility::COUT>("Answer: {}\n", count);
+    utility::print<COUT>("Answer: {}\n", count);
   }
 
   void part2()
@@ -53,6 +53,6 @@ namespace day1
       sum = ((sum % 100) + 100) % 100;
     }
 
-    utility::print<utility::COUT>("Answer: {}\n", count);
+    utility::print<COUT>("Answer: {}\n", count);
   }
 }

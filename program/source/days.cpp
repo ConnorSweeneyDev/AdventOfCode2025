@@ -24,16 +24,16 @@ namespace days
     if (part != 0 && part != 1 && part != 2) throw utility::exception("Invalid part (" + std::to_string(part) + ")");
     if (part == 0 || part == 1)
     {
-      utility::print<utility::COUT>("--------------- Part 1 ---------------\n");
+      utility::print<COUT>("---------------------- Part 1 ----------------------\n");
       part1();
-      utility::print<utility::COUT>("--------------- Part 1 ---------------\n");
-      if (part == 0) utility::print<utility::COUT>("\n");
+      utility::print<COUT>("---------------------- Part 1 ----------------------\n");
+      if (part == 0) utility::print<COUT>("\n");
     }
     if (part == 0 || part == 2)
     {
-      utility::print<utility::COUT>("--------------- Part 2 ---------------\n");
+      utility::print<COUT>("---------------------- Part 2 ----------------------\n");
       part2();
-      utility::print<utility::COUT>("--------------- Part 2 ---------------\n");
+      utility::print<COUT>("---------------------- Part 2 ----------------------\n");
     }
   }
 
@@ -61,10 +61,10 @@ namespace days
   {
     for (int day = 1; day <= 12; ++day)
     {
-      utility::print<utility::COUT>("=============== Day {}{} ===============\n", (day >= 10 ? "" : " "), day);
+      utility::print<COUT>("====================== Day {}{} ======================\n", (day >= 10 ? "" : " "), day);
       run_day(day, 0);
-      utility::print<utility::COUT>("=============== Day {}{} ===============\n", (day >= 10 ? "" : " "), day);
-      if (day != 12) utility::print<utility::COUT>("\n");
+      utility::print<COUT>("====================== Day {}{} ======================\n", (day >= 10 ? "" : " "), day);
+      if (day != 12) utility::print<COUT>("\n");
     }
   }
 }

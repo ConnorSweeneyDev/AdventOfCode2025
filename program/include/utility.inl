@@ -14,35 +14,24 @@
 
 namespace utility
 {
-  template <typename... message_arguments>
-  exception::exception(const std::string &message_, message_arguments &&...arguments_)
-    : message(std::format(
-        "{}.", std::vformat(message_, std::make_format_args(std::forward<const message_arguments>(arguments_)...))))
-  {
-  }
-
   template <print_stream stream, typename... message_arguments>
   void print(std::format_string<message_arguments...> message, message_arguments &&...arguments)
   {
     std::lock_guard<std::mutex> lock(print_mutex);
     auto formatted_message = std::format(message, std::forward<message_arguments>(arguments)...);
-    if constexpr (stream == COUT)
+    std::ostream &choice = []() -> std::ostream &
     {
-      std::cout << formatted_message;
-      std::cout.flush();
-    }
-    else if constexpr (stream == CERR)
-    {
-      std::cerr << formatted_message;
-      std::cerr.flush();
-    }
-    else if constexpr (stream == CLOG)
-    {
-      std::clog << formatted_message;
-      std::clog.flush();
-    }
-    else
-      throw exception("Invalid print stream specification");
+      if constexpr (stream == COUT)
+        return std::cout;
+      else if constexpr (stream == CERR)
+        return std::cerr;
+      else if constexpr (stream == CLOG)
+        return std::clog;
+      else
+        throw exception("Invalid print stream specification");
+    }();
+    choice << formatted_message;
+    choice.flush();
   }
 
   template <serializable type> type read_file(const std::filesystem::path &file)
@@ -74,5 +63,12 @@ namespace utility
       output_file << container;
     else if constexpr (std::same_as<type, std::vector<std::string>>)
       for (const auto &line : container) output_file << line << '\n';
+  }
+
+  template <typename... message_arguments>
+  exception::exception(const std::string &message_, message_arguments &&...arguments_)
+    : message(std::format(
+        "{}.", std::vformat(message_, std::make_format_args(std::forward<const message_arguments>(arguments_)...))))
+  {
   }
 }

@@ -39,7 +39,7 @@ namespace day2
         if (is_invalid(std::to_string(number))) sum += static_cast<unsigned long long>(number);
     }
 
-    utility::print<utility::COUT>("Answer: {}\n", sum);
+    utility::print<COUT>("Answer: {}\n", sum);
   }
 
   void part2()
@@ -91,6 +91,6 @@ namespace day2
         if (is_invalid(std::to_string(number))) sum += static_cast<unsigned long long>(number);
     }
 
-    utility::print<utility::COUT>("Answer: {}\n", sum);
+    utility::print<COUT>("Answer: {}\n", sum);
   }
 }
