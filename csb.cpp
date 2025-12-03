@@ -31,7 +31,7 @@ int csb::build()
   if (!csb::is_subproject) csb::clang_format("21.1.1");
 
   if (auto session = csb::get_environment_variable("AOC_SESSION"); !session.empty())
-    for (int day = 1; day <= 2; ++day)
+    for (int day = 1; day <= 3; ++day)
       csb::file_install({{"https://adventofcode.com/2025/day/" + std::to_string(day) + "/input",
                           "input/day" + std::to_string(day) + ".txt"}},
                         {"-b", "session=" + session});
